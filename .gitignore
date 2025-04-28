@@ -1,0 +1,22 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# VSCode folder
+.vscode/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# MacOS files
+.DS_Store
+
+# Python virtual environment
+venv/
+
+# .env or sensitive files
+.env
+
+# Ignore all CSV files
+*.csv

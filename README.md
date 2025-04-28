@@ -1,6 +1,6 @@
 # CSV Comparator
 
-A Python tool to automatically compare two CSV files inside each subfolder and generate a detailed Excel report summarizing the differences.
+A Python tool to automatically compare two CSV files inside each subfolder, highlight the differences, and generate a detailed Excel report summarizing the results.
 
 ## Features
 
@@ -9,7 +9,9 @@ A Python tool to automatically compare two CSV files inside each subfolder and g
 - Detects:
   - Full matches ✅
   - Differences in data or structure ❌
-- Generates a final `comparison_result.xlsx` report.
+  - Highlights differences with **red background** for easy identification.
+- Generates a final `comparison_result.xlsx` report summarizing the comparison results.
+- Saves individual difference files for discrepancies.
 - Supports Persian (Farsi) language in CSV files.
 
 ## Requirements
@@ -17,8 +19,9 @@ A Python tool to automatically compare two CSV files inside each subfolder and g
 - Python 3.7+
 - Libraries:
   - `pandas`
+  - `openpyxl`
 
-Install dependencies:
+To install the required dependencies, run the following:
 
 ```bash
-pip install pandas
+pip install pandas openpyxl

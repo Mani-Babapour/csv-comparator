@@ -1,11 +1,16 @@
 import os
 import pandas as pd
+from openpyxl import load_workbook
+from openpyxl.styles import PatternFill
 
 # Set your main folder path here
-main_folder = 'path_to_your_folder'
+main_folder = r"C:\path\to\your\folder"
 
 # List to collect the results
 results = []
+
+# Color style for the red fill (for differences)
+red_fill = PatternFill(start_color="FF0000", end_color="FF0000", fill_type="solid")
 
 # Go through folders
 for student_folder in os.listdir(main_folder):
@@ -35,7 +40,25 @@ for student_folder in os.listdir(main_folder):
                         diffs = (df1 != df2)
                         diff_cells = diffs.sum().sum()
                         explanation = f"Difference found: {diff_cells} different cells"
-            
+
+                        # Save the diff dataframe directly in the student's folder
+                        if diff_cells > 0:
+                            diff_file_path = os.path.join(student_path, f"{student_folder}_diffs.xlsx")
+                            diffs.to_excel(diff_file_path, index=False)
+
+                            # Apply color formatting to highlight differences (only for differences)
+                            wb = load_workbook(diff_file_path)
+                            ws = wb.active
+
+                            # Loop through the dataframe and apply the formatting
+                            for row in range(2, len(diffs) + 2):  # Excel rows start from 1, but pandas starts from 0
+                                for col in range(1, len(diffs.columns) + 1):
+                                    if diffs.iloc[row - 2, col - 1]:  # Check if there's a difference
+                                        ws.cell(row=row, column=col).fill = red_fill
+                                    # If there is no difference, no color fill is applied (it will remain as default/no color)
+
+                            wb.save(diff_file_path)
+
             except Exception as e:
                 explanation = f"Error reading files: {str(e)}"
             
