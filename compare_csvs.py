@@ -4,7 +4,7 @@ from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
 
 # Set your main folder path here
-main_folder = r"C:\path\to\your\folder"
+main_folder = 'path_to_your_folder'
 
 # List to collect the results
 results = []
