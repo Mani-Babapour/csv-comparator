@@ -18,5 +18,8 @@ venv/
 # .env or sensitive files
 .env
 
-# Ignore all CSV files
+# CSV files
 *.csv
+
+# XLSX files
+*.xlsx
